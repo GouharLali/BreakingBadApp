@@ -3,8 +3,11 @@ package mainscreen
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class CharacterListViewModel() : ViewModel() {
+@HiltViewModel
+class CharacterListViewModel @Inject constructor() : ViewModel() {
     private val _actor = mutableStateOf<Domain.Character?>(null)
     val actor: State<Domain.Character?> = _actor
 

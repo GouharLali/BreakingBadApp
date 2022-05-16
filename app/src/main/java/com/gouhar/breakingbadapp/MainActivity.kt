@@ -16,7 +16,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.gouhar.breakingbadapp.ui.theme.BreakingBadAppTheme
 import mainscreen.CharacterListViewModel
 
@@ -27,7 +27,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             BreakingBadAppTheme {
 
-                val viewModel = CharacterListViewModel()
+                val viewModel : CharacterListViewModel = hiltViewModel()
 
                 // A surface container using the 'background' color from the theme
                 Surface(
