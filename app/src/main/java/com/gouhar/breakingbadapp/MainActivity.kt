@@ -16,7 +16,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
 import com.gouhar.breakingbadapp.ui.theme.BreakingBadAppTheme
+import mainscreen.CharacterListViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +26,8 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             BreakingBadAppTheme {
+
+                val viewModel = CharacterListViewModel()
 
                 // A surface container using the 'background' color from the theme
                 Surface(
@@ -35,7 +39,7 @@ class MainActivity : ComponentActivity() {
                             vertical = 8.dp),
                         verticalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
-                        CharacterCard(Color.Red, "Johnny Depp")
+                        CharacterCard(Color.Red, viewModel.actor.value?.name ?: "")
                         CharacterCard(Color.Green, "Angelina Jolie")
                         CharacterCard(Color.Magenta, "Margot Robbie")
                     }
@@ -82,16 +86,19 @@ fun CharacterCard(color:Color, actorName: String){
 @Preview(showBackground = true)
 @Composable
 fun CharacterCardPreview() {
+    val viewModel = CharacterListViewModel()
+
     BreakingBadAppTheme() {
         Column(
             modifier = Modifier.padding(horizontal = 32.dp,
                 vertical = 8.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            CharacterCard(Color.Red, "Johnny Depp")
+            CharacterCard(Color.Red, viewModel.actor.value?.name ?: "")
             CharacterCard(Color.Green, "Angelina Jolie")
             CharacterCard(Color.Magenta, "Margot Robbie")
         }
     }
 }
+
 
